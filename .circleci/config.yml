@@ -1,7 +1,19 @@
 version: 2.1
 orbs:
   node: circleci/node@2.1.0
+  docker: circleci/docker@1.2.1
 jobs:
+  build:
+    environment:
+      image: akrason/ask-cicd
+     executor:
+       docker/default
+     steps:
+       - checkout
+       - setup_remote_docker
+       - run:
+         name: Build
+         command: docker-compose up -d
   node-server:
     executor:
       name: node/default
@@ -25,5 +37,20 @@ jobs:
 workflows:
     build-and-test:
       jobs:
-        - node-server
-        - react-client
+        - build:
+          filters:
+            branches:
+              only:
+                - master
+        - node-server:
+          filters:
+            branches:
+              only:
+                -master
+        - react-client:
+          filters:
+            branches:
+              only:
+                -master
+          requires:
+            - build
