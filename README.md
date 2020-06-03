@@ -1,9 +1,6 @@
 # ASK 2020 Nodejs-React app
 Repozytorium stworzone na potrzeby zajęć z Administracji Sieciami Komputerowymi - Lab 2 ASK CICD
 
-Workflow powinien wyglądać następująco:
-
-    ![CI workflow](./res/workflow.jpg?raw=true "Workflow")
 
 ## Materiały
 1. [Docker-compose getting started](https://docs.docker.com/compose/gettingstarted/)
