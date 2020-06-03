@@ -3,16 +3,12 @@ orbs:
   node: circleci/node@2.1.0
 jobs:
   build:
-    environment:
-      image: akrason/ask-cicd
     executor:
       name: node/default
     steps:
       - checkout
       - setup_remote_docker
-      - run:
-          name: Build docker containers
-          command: docker-compose up -d
+      
   node-server:
     executor:
       name: node/default
@@ -37,5 +33,9 @@ workflows:
     build-and-test:
       jobs:
         - build
-        - node-server
-        - react-client
+        - node-server:
+          requires:
+            - build
+        - react-client:
+          requires:
+            - build
