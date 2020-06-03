@@ -3,8 +3,7 @@ Repozytorium stworzone na potrzeby zajęć z Administracji Sieciami Komputerowym
 
 Workflow powinien wyglądać następująco:
 
-    ![CI workflow](./res/workflow.jpg)
-
+    ![CI workflow](./res/workflow.jpg?raw=true "Workflow")
 
 ## Materiały
 1. [Docker-compose getting started](https://docs.docker.com/compose/gettingstarted/)
