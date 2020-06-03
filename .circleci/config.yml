@@ -11,8 +11,8 @@ jobs:
       - checkout
       - setup_remote_docker
       - run:
-        name: Build
-        command: docker-compose up -d
+          name: Build docker containers
+          command: docker-compose up -d
   node-server:
     executor:
       name: node/default
@@ -31,8 +31,8 @@ jobs:
       - node/install-packages:
           app-dir: ./client       
       - run:
-            command: npm test
-            working_directory: ./client
+          command: npm test
+          working_directory: ./client
 workflows:
     build-and-test:
       jobs:
