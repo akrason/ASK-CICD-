@@ -36,7 +36,7 @@ jobs:
       - run:
           command: |
             echo "$DOCKER_PASS" | docker login -u "akrason" --password-stdin
-            sudo docker build .server -t akrason/node-svr
+            sudo docker build ./server -t akrason/node-svr
             sudo docker push akrason/node-svr
 workflows:
     build-and-test:
