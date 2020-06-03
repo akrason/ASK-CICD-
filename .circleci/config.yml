@@ -38,6 +38,16 @@ jobs:
             echo "$DOCKER_PASS" | docker login -u "akrason" --password-stdin
             sudo docker build ./server -t akrason/node-svr
             sudo docker push akrason/node-svr
+      - run:
+          command: |
+            echo "$DOCKER_PASS" | docker login -u "akrason" --password-stdin
+            sudo docker build ./client -t akrason/cra-client
+            sudo docker push akrason/cra-client
+      - run:
+          command: |
+            echo "$DOCKER_PASS" | docker login -u "akrason" --password-stdin
+            sudo docker build ./server -t akrason/node-react-db
+            sudo docker push akrason/node-react-db
 workflows:
     build-and-test:
       jobs:
