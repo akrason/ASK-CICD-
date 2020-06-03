@@ -2,7 +2,7 @@ version: 2.1
 orbs:
   node: circleci/node@2.1.0
 jobs:
-  build-and-test:
+  node-server:
     executor:
       name: node/default
     steps:
@@ -12,6 +12,7 @@ jobs:
       - run: 
           command: npm test
           working_directory: ./server
+  react-client:
       - checkout
       - node/install-packages:
           app-dir: ./client       
@@ -21,4 +22,5 @@ jobs:
 workflows:
     build-and-test:
       jobs:
-        - build-and-test
+        - node-server
+        - react-client
