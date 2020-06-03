@@ -45,34 +45,22 @@ jobs:
             echo "$DOCKER_PASS" | docker login -u "akrason" --password-stdin
             sudo docker build ./client -t akrason/cra-client
             sudo docker push akrason/cra-client
-      - run:
-          command: |
-            echo "$DOCKER_PASS" | docker login -u "akrason" --password-stdin
-            sudo docker build ./db -t akrason/node-react-db
-            sudo docker push akrason/node-react-db
+
 workflows:
     build-and-test:
       jobs:
-        - build
-        - node-server:
+        - build:
             filters:
               branches:
                 only:
                   - master
+        - node-server:
             requires:
               - build
         - react-client:
-            filters:
-              branches:
-                only:
-                  - master
             requires:
               - build
         - docker-publish:
-            filters:
-              branches:
-                only:
-                  - master
             requires:
               - react-client
               - node-server
