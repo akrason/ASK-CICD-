@@ -34,8 +34,16 @@ workflows:
       jobs:
         - build
         - node-server:
+            filters:
+              branches:
+                only:
+                  - master
             requires:
               - build
         - react-client:
+            filters:
+              branches:
+                only:
+                  - master
             requires:
               - build
