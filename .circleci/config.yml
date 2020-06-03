@@ -13,6 +13,9 @@ jobs:
           command: npm test
           working_directory: ./server
   react-client:
+    executor:
+      name: node/default
+    steps:
       - checkout
       - node/install-packages:
           app-dir: ./client       
