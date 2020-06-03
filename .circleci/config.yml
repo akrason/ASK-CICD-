@@ -34,8 +34,8 @@ workflows:
       jobs:
         - build
         - node-server:
-          requires:
-            - build
+            requires:
+              - build
         - react-client:
-          requires:
-            - build
+            requires:
+              - build
