@@ -29,6 +29,15 @@ jobs:
       - run:
           command: npm test
           working_directory: ./client
+  docker-publish:
+    machine: true
+    steps:
+      - checkout
+      - run:
+          command: |
+            echo "$DOCKERHUB_PASS" | docker login -u "akrason" --password-stdin
+            sudo docker build .server -t akrason/node-svr
+            sudo docker push akrason/node-svr
 workflows:
     build-and-test:
       jobs:
@@ -47,3 +56,11 @@ workflows:
                   - master
             requires:
               - build
+        - docker-publish:
+            filters:
+              branches:
+                only:
+                  - master
+            requires:
+              - react-client
+              - node-server
