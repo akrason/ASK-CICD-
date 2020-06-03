@@ -46,7 +46,7 @@ jobs:
       - run:
           command: |
             echo "$DOCKER_PASS" | docker login -u "akrason" --password-stdin
-            sudo docker build ./server -t akrason/node-react-db
+            sudo docker build ./db -t akrason/node-react-db
             sudo docker push akrason/node-react-db
 workflows:
     build-and-test:
