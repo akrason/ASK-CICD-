@@ -36,20 +36,6 @@ jobs:
 workflows:
     build-and-test:
       jobs:
-        - build:
-          filters:
-            branches:
-              only:
-                - master
-        - node-server:
-          filters:
-            branches:
-              only:
-                -master
-        - react-client:
-          filters:
-            branches:
-              only:
-                -master
-          requires:
-            - build
+        - build
+        - node-server
+        - react-client
